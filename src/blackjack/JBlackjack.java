@@ -22,10 +22,12 @@ public class JBlackjack extends JPanel{
   public boolean blnspressed = false;
   public boolean blnStart = false;
   public boolean blnrepaint = true;
+  public deck deckStart = new deck();
   
   // Override method
   public void paintComponent(Graphics g){
     Graphics2D g2d = (Graphics2D)g;
+    deckStart.printDeck();
   }
   
   public static void pause(int intMS){

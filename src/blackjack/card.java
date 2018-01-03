@@ -18,5 +18,12 @@ public class card {
         this.symbol = symbol;
         this.suit = suit;
         this.drawn = false;
+        if(this.symbol == "king" || this.symbol == "queen" || this.symbol == "jack"){
+            this.value = 10;
+        } else if(this.symbol == "ace"){
+            this.value = 1;
+        } else {
+            this.value = Integer.parseInt(this.symbol);
+        }
     }
 }

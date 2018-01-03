@@ -19,6 +19,7 @@ public class Blackjack implements ActionListener, MouseListener, MouseMotionList
   public JFrame theframe;
   public JBlackjack thepanel; //Instead of JPanel
   public Timer thetimer;
+  public JButton dealbut, hitbut, standbut;
   
   // Methods
   public void actionPerformed(ActionEvent evt){
@@ -26,6 +27,22 @@ public class Blackjack implements ActionListener, MouseListener, MouseMotionList
       if(evt.getSource() == thetimer){
         thepanel.repaint();
       }
+    }
+    if(evt.getSource() == dealbut){
+      //theframe.requestFocus();
+      theframe.setSize(800, 600);
+      thepanel.removeAll();
+      thepanel.repaint();
+      //thepanel.revalidate();  
+      thepanel.add(hitbut);
+      thepanel.add(standbut);
+      thepanel.player1.deal(thepanel.deckStart.drawCard(), thepanel.deckStart.drawCard()); 
+    }
+    if(evt.getSource() == hitbut){
+      thepanel.player1.hit(thepanel.deckStart.drawCard()); 
+    }
+    if(evt.getSource() == standbut){
+      thepanel.deckStart.shuffle();
     }
   }
   
@@ -109,6 +126,22 @@ public class Blackjack implements ActionListener, MouseListener, MouseMotionList
     thepanel.addMouseMotionListener(this);
     theframe.addKeyListener(this);
     thepanel.setLayout(null);
+    
+    dealbut = new JButton("Deal");
+    dealbut.setSize(100, 25);
+    dealbut.setLocation(600, 400);
+    dealbut.addActionListener(this);
+    thepanel.add(dealbut);
+    
+    hitbut = new JButton("Hit");
+    hitbut.setSize(100, 25);
+    hitbut.setLocation(600, 400);
+    hitbut.addActionListener(this);
+    
+    standbut = new JButton("Stand");
+    standbut.setSize(100, 25);
+    standbut.setLocation(600, 430);
+    standbut.addActionListener(this);
     
     theframe.setContentPane(thepanel);
     theframe.setVisible(true);

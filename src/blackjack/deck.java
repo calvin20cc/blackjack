@@ -22,6 +22,22 @@ public class deck {
             System.out.println(this.cardArray[i].symbol + " of " + this.cardArray[i].suit);
         }
     }
+    // Draw Card Method
+    public card drawCard(){
+        int random = (int)(Math.random() * 51);
+        while(this.cardArray[random].drawn){
+            random = (int)(Math.random() * 51);
+        }
+        System.out.println(this.cardArray[random].symbol + " of " + this.cardArray[random].suit);
+        this.cardArray[random].drawn = true;
+        return this.cardArray[random];
+    }
+    public void shuffle(){
+        for(int i = 0; i < this.cardArray.length; i++){
+            this.cardArray[i].drawn = false;
+        }
+        System.out.println("deck is shuffled");
+    }
     // Constructor
     public deck(){
         this.cardArray = new card[52];

@@ -23,11 +23,16 @@ public class JBlackjack extends JPanel{
   public boolean blnStart = false;
   public boolean blnrepaint = true;
   public deck deckStart = new deck();
+  public int winnings = 5000;
+  public int bet = 0;
+  public player player1 = new player();
+  public player dealer = new player();
   
-  // Override method
+  @Override
   public void paintComponent(Graphics g){
     Graphics2D g2d = (Graphics2D)g;
-    deckStart.printDeck();
+    g2d.clearRect(0, 0, 800, 600);
+    g2d.drawString(Integer.toString(winnings), 375, 500);
   }
   
   public static void pause(int intMS){

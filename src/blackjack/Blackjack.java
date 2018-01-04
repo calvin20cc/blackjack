@@ -42,7 +42,8 @@ public class Blackjack implements ActionListener, MouseListener, MouseMotionList
       thepanel.player1.hit(thepanel.deckStart.drawCard()); 
     }
     if(evt.getSource() == standbut){
-      thepanel.deckStart.shuffle();
+        System.out.println(thepanel.player1.getMaxValue());
+        thepanel.deckStart.shuffle();
     }
   }
   

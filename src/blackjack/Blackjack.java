@@ -36,14 +36,52 @@ public class Blackjack implements ActionListener, MouseListener, MouseMotionList
       //thepanel.revalidate();  
       thepanel.add(hitbut);
       thepanel.add(standbut);
-      thepanel.player1.deal(thepanel.deckStart.drawCard(), thepanel.deckStart.drawCard()); 
+      thepanel.player1.deal(thepanel.deckStart.drawCard(), thepanel.deckStart.drawCard());
+      thepanel.dealer.deal(thepanel.deckStart.drawCard(), thepanel.deckStart.drawCard());
+      if(thepanel.player1.getMaxValue() == 21 && thepanel.dealer.getMaxValue() == 21){
+          System.out.println("PUSH");
+          hitbut.setEnabled(false);
+      } else if(thepanel.player1.getMaxValue() == 21){
+          System.out.println("WIN");
+          hitbut.setEnabled(false);
+      } else if(thepanel.dealer.getMaxValue() == 21){
+          System.out.println("LOSE");
+          hitbut.setEnabled(false);
+      }
     }
     if(evt.getSource() == hitbut){
-      thepanel.player1.hit(thepanel.deckStart.drawCard()); 
+      thepanel.player1.hit(thepanel.deckStart.drawCard());
+      System.out.println(thepanel.player1.getMinValue());
+      if(thepanel.player1.getMaxValue() == 21){
+          hitbut.setEnabled(false);
+          evt.setSource(standbut);
+      }
+      if(thepanel.player1.getMinValue() > 21){
+          System.out.println("BUST");
+          hitbut.setEnabled(false);
+          standbut.setEnabled(false);
+      }
     }
     if(evt.getSource() == standbut){
-        System.out.println(thepanel.player1.getMaxValue());
+        System.out.println("player 1: " + thepanel.player1.getMaxValue());
+        if(thepanel.player1.getMaxValue() < 16){
+            while(thepanel.dealer.getMaxValue() < 17){
+                thepanel.dealer.hit(thepanel.deckStart.drawCard());
+            }
+        }
+        System.out.println("dealer: " + thepanel.dealer.getMaxValue());
+        if(thepanel.dealer.getMaxValue() > 21){
+            System.out.println("WIN");
+        } else if(thepanel.dealer.getMaxValue() < thepanel.player1.getMaxValue()){
+            System.out.println("WIN");
+        } else if(thepanel.dealer.getMaxValue() == thepanel.player1.getMaxValue()){
+            System.out.println("PUSH");
+        } else{
+            System.out.println("LOSE");
+        }
         thepanel.deckStart.shuffle();
+        hitbut.setEnabled(false);
+        standbut.setEnabled(false);
     }
   }
   

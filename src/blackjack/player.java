@@ -66,6 +66,15 @@ public class player {
             System.out.println("value: " + iterator.next());
         }
     }
+    public int getMinValue(){
+        int min = handValues.get(0);
+        for(int i = 0; i < handValues.size(); i++){
+            if(handValues.get(i) < min){
+                min = handValues.get(i);
+            }
+        }
+        return min;
+    }
     public int getMaxValue(){
         int max = 0;
         for(int i = 0; i < handValues.size(); i++){

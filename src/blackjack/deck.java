@@ -15,8 +15,8 @@ public class deck {
     // Properties
     card[] cardArray;
     String[] suits = {"clubs","diamonds","hearts","spades"};
-    //String[] symbols = {"ace","king","queen","jack","2","3","4","5","6","7","8","9","10"};
-    String[] symbols = {"ace","ace","ace","ace","ace","ace","ace","5","6","7","8","ace","ace"};
+    String[] symbols = {"ace","king","queen","jack","2","3","4","5","6","7","8","9","10"};
+    //String[] symbols = {"ace","ace","ace","ace","ace","ace","ace","10","10","10","10","10","ace"};
     // Print Deck Method
     public void printDeck(){
         for(int i = 0; i < this.cardArray.length; i++){

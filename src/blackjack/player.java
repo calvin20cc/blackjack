@@ -54,35 +54,39 @@ public class player {
         printHandValues();
     }
     public void cleanHandValues(){
-        for(int i = 0; i < handValues.size(); i++){
-            if(handValues.get(i) > 21 && handValues.size() > 1){
-                handValues.remove(i);
+        for(int i = 0; i < this.handValues.size(); i++){
+            if(this.handValues.get(i) > 21 && this.handValues.size() > 1){
+               this.handValues.remove(i);
             }
         }
         this.handValues = this.handValues.stream().distinct().collect(Collectors.toList());
     }
     public void printHandValues(){
-        for(Iterator<Integer> iterator = handValues.iterator(); iterator.hasNext();){
+        for(Iterator<Integer> iterator = this.handValues.iterator(); iterator.hasNext();){
             System.out.println("value: " + iterator.next());
         }
     }
     public int getMinValue(){
-        int min = handValues.get(0);
-        for(int i = 0; i < handValues.size(); i++){
-            if(handValues.get(i) < min){
-                min = handValues.get(i);
+        int min = this.handValues.get(0);
+        for(int i = 0; i < this.handValues.size(); i++){
+            if(this.handValues.get(i) < min){
+                min = this.handValues.get(i);
             }
         }
         return min;
     }
     public int getMaxValue(){
         int max = 0;
-        for(int i = 0; i < handValues.size(); i++){
-            if(handValues.get(i) > max){
-                max = handValues.get(i);
+        for(int i = 0; i < this.handValues.size(); i++){
+            if(this.handValues.get(i) > max){
+                max = this.handValues.get(i);
             }
         }
         return max;
+    }
+    public void resetHand(){
+        this.hand.clear();
+        this.handValues.clear();
     }
     public player(){
         this.hand = new ArrayList<card>();

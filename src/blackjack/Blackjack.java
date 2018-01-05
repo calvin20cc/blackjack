@@ -40,31 +40,33 @@ public class Blackjack implements ActionListener, MouseListener, MouseMotionList
       thepanel.dealer.deal(thepanel.deckStart.drawCard(), thepanel.deckStart.drawCard());
       if(thepanel.player1.getMaxValue() == 21 && thepanel.dealer.getMaxValue() == 21){
           System.out.println("PUSH");
-          hitbut.setEnabled(false);
+          thepanel.pause(1000);
+          resetRound();
       } else if(thepanel.player1.getMaxValue() == 21){
           System.out.println("WIN");
-          hitbut.setEnabled(false);
+          thepanel.pause(1000);
+          resetRound();
       } else if(thepanel.dealer.getMaxValue() == 21){
           System.out.println("LOSE");
-          hitbut.setEnabled(false);
+          thepanel.pause(1000);
+          resetRound();
       }
     }
     if(evt.getSource() == hitbut){
       thepanel.player1.hit(thepanel.deckStart.drawCard());
       System.out.println(thepanel.player1.getMinValue());
       if(thepanel.player1.getMaxValue() == 21){
-          hitbut.setEnabled(false);
           evt.setSource(standbut);
       }
       if(thepanel.player1.getMinValue() > 21){
           System.out.println("BUST");
-          hitbut.setEnabled(false);
-          standbut.setEnabled(false);
+          thepanel.pause(1000);
+          resetRound();
       }
     }
     if(evt.getSource() == standbut){
         System.out.println("player 1: " + thepanel.player1.getMaxValue());
-        if(thepanel.player1.getMaxValue() < 16){
+        if(thepanel.dealer.getMaxValue() < 16){
             while(thepanel.dealer.getMaxValue() < 17){
                 thepanel.dealer.hit(thepanel.deckStart.drawCard());
             }
@@ -79,9 +81,8 @@ public class Blackjack implements ActionListener, MouseListener, MouseMotionList
         } else{
             System.out.println("LOSE");
         }
-        thepanel.deckStart.shuffle();
-        hitbut.setEnabled(false);
-        standbut.setEnabled(false);
+        thepanel.pause(1000);
+        resetRound();
     }
   }
   
@@ -154,6 +155,17 @@ public class Blackjack implements ActionListener, MouseListener, MouseMotionList
   public void keyTyped(KeyEvent evt){
     //System.out.println(evt.getKeyChar() + " key typed");
   }
+  
+  public void resetRound(){
+      theframe.setSize(800, 600);
+      thepanel.removeAll();
+      thepanel.repaint();
+      thepanel.add(dealbut);
+      thepanel.player1.resetHand();
+      thepanel.dealer.resetHand();
+      thepanel.deckStart.shuffle();
+  }
+  
   // Constructors
   public Blackjack(){
     theframe = new JFrame("BlackJack");
